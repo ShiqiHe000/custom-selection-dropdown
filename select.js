@@ -91,25 +91,29 @@ function setUpCustomElement(select){
     select.customElement.addEventListener('keydown', e => {
         switch(e.code) {
             case 'Space':  // close or open the drop down
-            case 'Enter':
+            case 'Enter':{
                 select.optionsCustomElement.classList.toggle('show');
                 break;
-            case 'ArrowUp': // change the selection
+            }
+            case 'ArrowUp': {// change the selection
                 const prevOption = select.options[select.selectedOptionIndex - 1];
                 if(prevOption){
                     select.selectValue(prevOption.value);
                 }
                 break;
-            case 'ArrowDown':
+            }
+            case 'ArrowDown':{
                 const nextOption = select.options[select.selectedOptionIndex + 1];
                 if(nextOption){
                     select.selectValue(nextOption.value);
                 }
                 break;
-            case 'Escape':  // close the drop down
+            }
+            case 'Escape': { // close the drop down
                 select.optionsCustomElement.classList.remove('show');
                 break;
-            default: // search by typying the characters
+            }
+            default: {// search by typying the characters
                 clearTimeout(debounceTimeout);
                 searchTerm += e.key;
                 debounceTimeout = setTimeout(() => {searchTerm = ""}, 1000);
@@ -122,6 +126,7 @@ function setUpCustomElement(select){
                 if(searchedOption) {
                     select.selectValue(searchedOption.value);
                 }
+            }
         }
     })
 }
